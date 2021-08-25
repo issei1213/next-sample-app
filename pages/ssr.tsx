@@ -2,8 +2,13 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import { GetServerSideProps } from 'next'
 import dayjs from 'dayjs';
+import timezone from "dayjs/plugin/timezone";
+import utc from "dayjs/plugin/utc";
 import axios from 'axios'
 import Link from 'next/link'
+
+dayjs.extend(timezone);
+dayjs.extend(utc);
 
 type Response = {
   name: string
@@ -42,7 +47,7 @@ export default function SSR(props: Props) {
 export const getServerSideProps: GetServerSideProps<Props> = async (context) => {
   return {
     props: {
-      timestamp: dayjs(new Date()).format('YYYY-MM-DD HH:mm:ss'),
+      timestamp: dayjs(new Date()).tz("Asia/Tokyo").format('YYYY-MM-DD HH:mm:ss'),
     },
   }
 }
