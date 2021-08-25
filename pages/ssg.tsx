@@ -1,9 +1,16 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
-import { GetStaticProps } from 'next'
+import { GetServerSideProps } from 'next'
+import dayjs from 'dayjs';
+import axios from 'axios'
 import Link from 'next/link'
 
-export default function Home() {
+type Props = { 
+  timestamp: string, 
+}
+
+
+export default function SSG(props: Props) {
   return (
     <div className={styles.container}>
       <Head>
@@ -13,17 +20,16 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>Welcome to Next.js!</h1>
-        <Link href={'/isr'}>
-          <a>ISR動作確認ページへ</a>
-        </Link>
-        <Link href={'/ssr'}>
-          <a>SSR動作確認ページへ</a>
-        </Link>
-        <Link href={'/ssg'}>
-          <a>SSG動作確認ページへ</a>
+        <h1 className={styles.title}>SSGページ</h1>
+        <p> time: {dayjs(new Date()).format('YYYY-MM-DD HH:mm:ss')}</p>
+      </main>
+
+      <main className={styles.main}>
+        <Link href={'/'}>
+          <a>TOPページへ</a>
         </Link>
       </main>
+
     </div>
   )
 }
