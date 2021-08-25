@@ -1,11 +1,13 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import { GetStaticProps } from 'next'
+import dayjs from 'dayjs';
 
-type Props = { timestamp: number }
+type Props = { timestamp: string }
 
 
 export default function ISR(props: Props) {
+  
   return (
     <div className={styles.container}>
       <Head>
@@ -25,7 +27,7 @@ export default function ISR(props: Props) {
 export const getStaticProps: GetStaticProps<Props> = async context => {
   return {
     props: {
-      timestamp: new Date().getTime(),
+      timestamp: dayjs(new Date()).format('YYYY-MM-DD HH:mm:ss'),
     },
     revalidate: 5, //5秒キャッシュ
   }
