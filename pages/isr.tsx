@@ -4,6 +4,7 @@ import { GetStaticProps } from 'next'
 
 type Props = { timestamp: number }
 
+
 export default function ISR(props: Props) {
   return (
     <div className={styles.container}>
