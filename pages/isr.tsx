@@ -2,12 +2,19 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import { GetStaticProps } from 'next'
 import dayjs from 'dayjs';
+import axios from 'axios'
+import Link from 'next/link'
 
-type Props = { timestamp: string }
+type Response = {
+  name: string
+}
+
+type Props = { 
+  timestamp: string, 
+}
 
 
 export default function ISR(props: Props) {
-  
   return (
     <div className={styles.container}>
       <Head>
@@ -20,6 +27,13 @@ export default function ISR(props: Props) {
         <h1 className={styles.title}>ISRページ</h1>
         <p> time: {props.timestamp}</p>
       </main>
+
+      <main className={styles.main}>
+        <Link href={'/'}>
+          <a>TOPページへ</a>
+        </Link>
+      </main>
+
     </div>
   )
 }
